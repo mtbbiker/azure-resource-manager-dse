@@ -21,9 +21,9 @@ apt-get -y install unzip python-pip
 pip install requests
 
 cd /
-wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
-unzip lcm.zip
-cd install-datastax-ubuntu-lcm/bin
+wget https://github.com/DSPN/install-datastax-ubuntu/archive/master.zip
+unzip master.zip
+cd install-datastax-ubuntu-master/bin/lcm
 
 ./os/install_java.sh
 ./opscenter/install.sh
