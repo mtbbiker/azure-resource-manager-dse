@@ -10,7 +10,7 @@ echo unique_string $unique_string
 echo data_center_name $data_center_name
 echo opscenter_location $opscenter_location
 
-opscenter_dns_name="opscenter$unique_string.$opscenter_location.cloudapp.azure.com"
+opscenter_dns_name="opscenter$unique_string.$opscenter_location.cloudapp.microsoftazure.de"
 cluster_name="mycluster"
 # data_center_size
 # data_center_name

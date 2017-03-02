@@ -99,7 +99,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://', variables('storageAccountName'),'.blob.core.windows.net/vhds/', 'opscenter', 'vm-osdisk.vhd')]"
+              "uri": "[concat('http://', variables('storageAccountName'),'.blob.core.cloudapi.de/vhds/', 'opscenter', 'vm-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
