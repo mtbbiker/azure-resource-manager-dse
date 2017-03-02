@@ -23,7 +23,7 @@ pip install requests
 cd /
 wget https://github.com/DSPN/install-datastax-ubuntu/archive/master.zip
 unzip master.zip
-cd install-datastax-ubuntu-master/bin/lcm
+cd install-datastax-ubuntu-master/bin/
 
 ./os/install_java.sh
 ./opscenter/install.sh
