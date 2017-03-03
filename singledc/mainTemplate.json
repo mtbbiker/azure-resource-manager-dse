@@ -205,7 +205,7 @@
     },
     "opsCenterURL": {
       "type": "string",
-      "value": "[concat('http://opscenter', variables('uniqueString'), '.', variables('location'), '.cloudapp.microsoftazure.de:8888')]"
+      "value": "[concat('http://opscenter', variables('uniqueString'), '.', variables('location'), '.cloudapp.azure.com:8888')]"
     }
   }
 }
