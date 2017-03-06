@@ -43,6 +43,7 @@ wget https://github.com/DSPN/install-datastax-ubuntu/archive/master.zip
 unzip master.zip
 cd install-datastax-ubuntu-master/bin/lcm
 
+sleep 1m
 ./addNode.py \
 --opsc-ip $opscenter_dns_name \
 --clustername $cluster_name \
