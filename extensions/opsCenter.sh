@@ -25,6 +25,9 @@ wget https://github.com/DSPN/install-datastax-ubuntu/archive/master.zip
 unzip master.zip
 cd install-datastax-ubuntu-master/bin/
 
+# Overide install default version
+export OPSC_VERSION='6.0.5'
+
 ./os/install_java.sh
 ./opscenter/install.sh
 ./opscenter/start.sh

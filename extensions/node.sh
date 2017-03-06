@@ -10,9 +10,9 @@ echo unique_string $unique_string
 echo data_center_name $data_center_name
 echo opscenter_location $opscenter_location
 
+# Copied in from general install scripts
 echo "Going to set the TCP keepalive for now."
 sysctl -w net.ipv4.tcp_keepalive_time=120
-
 echo "Going to set the TCP keepalive permanently across reboots."
 echo "net.ipv4.tcp_keepalive_time = 120" >> /etc/sysctl.conf
 echo "" >> /etc/sysctl.conf
