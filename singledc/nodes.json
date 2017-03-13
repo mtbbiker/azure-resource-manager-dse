@@ -35,28 +35,19 @@
   },
   "variables": {
     "vmName": "[concat(parameters('namespace'), 'vm')]",
-    "storageAccountName": "[concat(parameters('namespace'), parameters('uniqueString'))]",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
     "subnetId": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
   },
   "resources": [
     {
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2016-04-30-preview",
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[parameters('namespace')]",
       "location": "[parameters('location')]",
       "properties": {
         "platformFaultDomainCount": 3,
-        "platformUpdateDomainCount": 18
-      }
-    },
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[variables('storageAccountName')]",
-      "apiVersion": "2015-06-15",
-      "location": "[parameters('location')]",
-      "properties": {
-        "accountType": "Standard_LRS"
+        "platformUpdateDomainCount": 18,
+        "managed": "true"
       }
     },
     {
@@ -105,7 +96,7 @@
       }
     },
     {
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2016-04-30-preview",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[concat(parameters('namespace'), 'vm', copyindex())]",
       "location": "[parameters('location')]",
@@ -115,8 +106,7 @@
       },
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', parameters('namespace'), 'vm', copyindex())]",
-        "[concat('Microsoft.Compute/availabilitySets/', parameters('namespace'))]",
-        "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
+        "[concat('Microsoft.Compute/availabilitySets/', parameters('namespace'))]"
       ],
       "properties": {
         "availabilitySet": {
@@ -133,13 +123,20 @@
         "storageProfile": {
           "imageReference": "[parameters('osSettings').imageReference]",
           "osDisk": {
-            "name": "osdisk",
-            "vhd": {
-              "uri": "[concat('http://', variables('storageAccountName'),'.blob.core.windows.net/vhds/', variables('vmName'), copyindex(), '-osdisk.vhd')]"
-            },
-            "caching": "ReadWrite",
             "createOption": "FromImage"
-          }
+          },
+          "dataDisks": [
+            {
+              "diskSizeGB": "1023",
+              "lun": 0,
+              "createOption": "Empty"
+            },
+            {
+              "diskSizeGB": "1023",
+              "lun": 1,
+              "createOption": "Empty"
+            },
+          ]
         },
         "networkProfile": {
           "networkInterfaces": [

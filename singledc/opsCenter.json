@@ -25,7 +25,6 @@
     }
   },
   "variables": {
-    "storageAccountName": "[concat('opscenter', parameters('uniqueString'))]",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
     "subnetId": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
   },
@@ -68,22 +67,12 @@
       }
     },
     {
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[variables('storageAccountName')]",
-      "apiVersion": "2015-06-15",
-      "location": "[parameters('location')]",
-      "properties": {
-        "accountType": "Standard_LRS"
-      }
-    },
-    {
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2016-04-30-preview",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "opscenter",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "Microsoft.Network/networkInterfaces/opscenter",
-        "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
+        "Microsoft.Network/networkInterfaces/opscenter"
       ],
       "properties": {
         "hardwareProfile": {
@@ -97,11 +86,6 @@
         "storageProfile": {
           "imageReference": "[parameters('osSettings').imageReference]",
           "osDisk": {
-            "name": "osdisk",
-            "vhd": {
-              "uri": "[concat('http://', variables('storageAccountName'),'.blob.core.windows.net/vhds/', 'opscenter', 'vm-osdisk.vhd')]"
-            },
-            "caching": "ReadWrite",
             "createOption": "FromImage"
           }
         },
