@@ -71,5 +71,4 @@ cd install-datastax-ubuntu-master/bin/lcm
 --pubip $public_ip \
 --privip $private_ip \
 --nodeid $node_id \
---dbpasswd $dbpasswd \
---datapath "/mnt/casssandra"
+--dbpasswd $dbpasswd 

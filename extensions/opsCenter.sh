@@ -36,4 +36,5 @@ sleep 1m
 --opsc-ip $public_ip \
 --clustername $cluster_name \
 --user $username \
---password $password
+--password $password \
+--datapath "/mnt/casssandra"
