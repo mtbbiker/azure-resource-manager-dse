@@ -20,7 +20,19 @@ echo "Going to set the TCP keepalive permanently across reboots."
 echo "net.ipv4.tcp_keepalive_time = 120" >> /etc/sysctl.conf
 echo "" >> /etc/sysctl.conf
 
-# Mount data disk
+# Move tmp disk mount pt and mount data disk
+cp /etc/fstab /etc/fstab.bak
+# tmp disk mounted at /mnt by default, moving to /mnt/tmp
+umount /mnt
+mkdir /mnt/tmp
+sed -ie 's/mnt/mnt\/tmp/g' /etc/fstab
+# add C* data disk
+mkfs -t ext4 /dev/sdc
+mkdir /mnt/cassandra
+chown 114:118 /mnt/cassandra
+echo "# Cassandra data mount, template auto-generated." >> /etc/fstab
+echo "/dev/sdc       /mnt/cassandra   ext4    defaults,nofail        0       2" >> /etc/fstab
+mount -a
 
 opscenter_dns_name="opscenter$unique_string.$opscenter_location.cloudapp.azure.com"
 cluster_name="mycluster"
@@ -59,4 +71,5 @@ cd install-datastax-ubuntu-master/bin/lcm
 --pubip $public_ip \
 --privip $private_ip \
 --nodeid $node_id \
---dbpasswd $dbpasswd
+--dbpasswd $dbpasswd \
+--datapath "/mnt/casssandra"
