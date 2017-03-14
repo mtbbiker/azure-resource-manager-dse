@@ -144,6 +144,9 @@
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
           },
+          "DBPassword": {
+            "value": "[parameters('DBPassword')]"
+          },
           "nodeCount": {
             "value": "[parameters('nodeCount')]"
           },
