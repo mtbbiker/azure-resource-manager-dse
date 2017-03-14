@@ -14,6 +14,9 @@
     "adminPassword": {
       "type": "securestring"
     },
+    "DBPassword": {
+      "type": "securestring"
+    },
     "nodeCount": {
       "type": "int"
     },
@@ -166,7 +169,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": "[parameters('osSettings').scripts]",
-          "commandToExecute": "[concat('bash node.sh ', parameters('nodeCount'), ' ', parameters('uniqueString'), ' ', parameters('namespace'), ' ', resourceGroup().location), ' ', parameters('DBPassword')]"
+          "commandToExecute": "[concat('bash node.sh ', parameters('nodeCount'), ' ', parameters('uniqueString'), ' ', parameters('namespace'), ' ', resourceGroup().location, ' ', parameters('DBPassword'))]"
         }
       }
     }
