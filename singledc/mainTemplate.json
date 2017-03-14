@@ -65,6 +65,12 @@
       "metadata": {
         "description": "Admin password for the virtual machines"
       }
+    },
+    "DBPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for default C* user 'cassandra'"
+      }
     }
   },
   "variables": {
