@@ -32,9 +32,13 @@ export OPSC_VERSION='6.0.8'
 ./opscenter/install.sh
 ./opscenter/start.sh
 sleep 1m
+
+#KLUDGE!
+sed -ie 's/PasswordAuthenticator/AllowAllAuthenticator/g' ./lcm/setupCluster.py
+sed -ie 's/5.0.7/5.0.5/g' ./lcm/setupCluster.py
+
 ./lcm/setupCluster.py \
 --opsc-ip $public_ip \
 --clustername $cluster_name \
 --user $username \
---password $password \
 --datapath "/mnt/cassandra"
