@@ -20,18 +20,7 @@ echo "Going to set the TCP keepalive permanently across reboots."
 echo "net.ipv4.tcp_keepalive_time = 120" >> /etc/sysctl.conf
 echo "" >> /etc/sysctl.conf
 
-# Move tmp disk mount pt and mount data disk
-cp /etc/fstab /etc/fstab.bak
-# tmp disk mounted at /mnt by default, moving to /mnt/tmp
-umount /mnt
-mkdir /mnt/tmp
-sed -ie 's/mnt/mnt\/tmp/g' /etc/fstab
-# add C* data disk
-mkfs -t ext4 /dev/sdc
-mkdir /mnt/cassandra
-echo "# Cassandra data mount, template auto-generated." >> /etc/fstab
-echo "/dev/sdc       /mnt/cassandra   ext4    defaults,nofail        0       2" >> /etc/fstab
-mount -a
+# On Ls series /mnt is the local ssd, remove some bash that setup managed disks
 mkdir /mnt/cassandra/data
 mkdir /mnt/cassandra/commitlog
 mkdir /mnt/cassandra/saved_caches
