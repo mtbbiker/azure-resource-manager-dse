@@ -21,9 +21,9 @@ echo "net.ipv4.tcp_keepalive_time = 120" >> /etc/sysctl.conf
 echo "" >> /etc/sysctl.conf
 
 # On Ls series /mnt is the local ssd, remove some bash that setup managed disks
-mkdir /mnt/cassandra/data
-mkdir /mnt/cassandra/commitlog
-mkdir /mnt/cassandra/saved_caches
+mkdir -p /mnt/cassandra/data
+mkdir -p /mnt/cassandra/commitlog
+mkdir -p /mnt/cassandra/saved_caches
 useradd cassandra
 chown -R cassandra:cassandra /mnt/cassandra
 
