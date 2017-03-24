@@ -41,4 +41,5 @@ sed -ie 's/5.0.7/5.0.5/g' ./lcm/setupCluster.py
 --opsc-ip $public_ip \
 --clustername $cluster_name \
 --user $username \
+--password $password \
 --datapath "/mnt/cassandra"
