@@ -1,17 +1,17 @@
 {
   "nodeCount": {
-    "value": 3
+    "value": 6
   },
   "vmSize": {
-    "value": "Standard_D3_v2"
+    "value": "Standard_D4_v2"
   },
   "adminUsername": {
-    "value": "datastax"
+    "value": "netstaradmin"
   },
   "adminPassword": {
-    "value": "foo123!"
+    "value": "TcOrjyfd6CNVZsWVmWAt!"
   },
   "DBPassword": {
-    "value": "asdf456$"
+    "value": "TcOrjyfd6CNVZsWVmWAt!"
   }
 }
