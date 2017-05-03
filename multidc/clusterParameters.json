@@ -1,11 +1,10 @@
 {
   "locations": [
-    "eastus",
-    "centralus",
-    "westus"
+    "westeurope",
+    "northeurope"
   ],
-  "nodeCount": 10,
+  "nodeCount": 3,
   "vmSize": "Standard_D1_v2",
-  "adminUsername": "datastax",
-  "adminPassword": "foo123!"
+  "adminUsername": "netstaradmin",
+  "adminPassword": "TcOrjyfd6CNVZsWVmWAt!"
 }
